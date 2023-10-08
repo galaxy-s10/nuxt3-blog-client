@@ -1,0 +1,13 @@
+// @use './billd-scss/index.scss' as *;
+@import './billd-scss/mixin.scss';
+@import './billd-scss/common.scss';
+@import './billd-scss/utils.scss';
+
+a {
+  color: black;
+  text-decoration: none;
+}
+* {
+  font-family: Arial, Sans-serif, Microsoft YaHei, '微软雅黑', Lucida Grande,
+    Verdana, serif !important;
+}

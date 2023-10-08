@@ -1,0 +1,22 @@
+// utils.scss放的是一些sass函数,可以全局引入,没用到的就不会被编译
+// 用法：.header { width: px2vw(360) }
+// 编译结果：.header { width: 96vw; }
+
+@use 'sass:math';
+
+@function MpxToVw($width) {
+  @return math.div($width, 750) * 100vw;
+  // @return ($width / 750) * 100vw;
+}
+@function pxToVw($width) {
+  @return math.div($width, 1920) * 100vw;
+  // @return ($width / 1920) * 100vw;
+}
+@function MOB($width) {
+  @return math.div($width, 750) * 100vw;
+  // @return ($width / 750) * 100vw;
+}
+@function PC($width) {
+  @return math.div($width, 1920) * 100vw;
+  // @return ($width / 1920) * 100vw;
+}

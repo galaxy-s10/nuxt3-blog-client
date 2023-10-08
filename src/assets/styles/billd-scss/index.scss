@@ -1,0 +1,9 @@
+// sass-loader的additionalData会引用该global.scss文件
+@forward './mixin.scss';
+@forward './common.scss';
+@forward './utils.scss';
+
+// @forward './animate/flash-txt.scss';
+// @forward './animate/flash-img.scss';
+// @forward './animate/loading-rotate.scss';
+// @forward './animate/loading-size.scss';
