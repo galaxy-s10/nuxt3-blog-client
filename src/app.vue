@@ -1,10 +1,5 @@
 <template>
-  <div>
-    <NuxtLayout></NuxtLayout>
-  </div>
+  <NuxtLayout />
 </template>
 
-<script>
-// const res = useNuxtApp()
-// console.log(res)
-</script>
+<script></script>

@@ -8,6 +8,24 @@ a {
   text-decoration: none;
 }
 * {
-  font-family: Arial, Sans-serif, Microsoft YaHei, '微软雅黑', Lucida Grande,
-    Verdana, serif !important;
+  font-family:
+    Arial,
+    Sans-serif,
+    Microsoft YaHei,
+    '微软雅黑',
+    Lucida Grande,
+    Verdana,
+    serif !important;
 }
+
+$theme-color1: #0984e3;
+$theme-color2: #f9f9f9;
+$theme-color3: var(--bg-color-light, #f5f5f5);
+$theme-color4: #f2f2f2;
+$theme-color5: var(--text-color-light, #333333);
+$theme-color6: var(--bg-item-color-light, #ffffff);
+$theme-color7: #ff0000;
+$theme-color8: rgba(0, 0, 0, 0.5);
+$theme-color9: #000000;
+$theme-color10: #ecf5ff99;
+$theme-color11: #a9ea7a;

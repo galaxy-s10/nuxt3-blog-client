@@ -4,7 +4,7 @@ console.log(
     `读取了: ${__filename.slice(__dirname.length + 1)}` +
     ' \x1B[0m'
 );
-
+/** @type {import("prettier").Config} */
 module.exports = {
   bracketSpacing: true, // 默认为true。即要求：{ foo: bar }；可改为false，即要求{foo: bar}
   singleQuote: true, // 默认为false。即要求：const a = "1"；可改为true，即要求const a = '1'

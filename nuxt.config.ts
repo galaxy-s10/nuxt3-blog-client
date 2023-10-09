@@ -3,7 +3,7 @@ import BilldHtmlWebpackPlugin from 'billd-html-webpack-plugin';
 const buildDir = 'nuxt-build'; // 不要使用dist作为构建目录，否则又会有之前的standard-version问题（拼接路径错误），导致一些ts提示出错
 const env =
   process.env.LD_NUXT_APP_RELEASE_PROJECT_ENV === 'prod' ? 'prod' : 'beta';
-const baseURL = env === 'prod' ? '/' : '/gwbeta/';
+const baseURL = env === 'prod' ? '/' : '/beta/';
 const port = env === 'prod' ? 7002 : 7001;
 const outDir = env === 'prod' ? 'prod' : 'beta';
 const cdnPath = `https://resource.hsslive.cn/${outDir}/public`;
