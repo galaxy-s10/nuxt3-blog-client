@@ -37,7 +37,7 @@
   </header>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 const hiddenHeader = ref(false);
 const navList = ref([
   {
@@ -84,6 +84,27 @@ async function querySearchAsync(keyWord, cb) {}
 </script>
 
 <style lang="scss" scope>
+/* 响应式布局 - 大于540px */
+@media screen and (min-width: 540px) {
+  .type-wrap {
+    width: 100%;
+  }
+}
+
+/* 响应式布局 - 大于 990px */
+@media screen and (min-width: 990px) {
+  .header-wrap {
+    width: 960px;
+  }
+}
+
+/* 响应式布局 - 大于 1200px */
+@media screen and (min-width: 1200px) {
+  .header-wrap {
+    width: 1200px;
+  }
+}
+
 @media screen and (max-width: 540px) {
   .header {
     height: 50px;

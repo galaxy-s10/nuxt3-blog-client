@@ -24,7 +24,7 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 
@@ -45,10 +45,12 @@ function handleRunningTime() {
   runningTime.value = res;
 }
 
-handleRunningTime();
-setInterval(() => {
+onMounted(() => {
   handleRunningTime();
-}, 1000);
+  setInterval(() => {
+    handleRunningTime();
+  }, 1000);
+});
 </script>
 
 <style lang="scss" scoped>

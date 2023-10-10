@@ -4,6 +4,7 @@ interface RootState {
   isMobile: boolean;
   clientWidth: number;
   scrollTop: number;
+  article: any;
 }
 
 export const useAppStore = defineStore('app', {
@@ -12,10 +13,14 @@ export const useAppStore = defineStore('app', {
       isMobile: false,
       clientWidth: 750,
       scrollTop: 0,
+      article: undefined,
     };
   },
 
   actions: {
+    setArticle(val) {
+      this.article = val;
+    },
     changeIsMobile(val) {
       this.isMobile = val;
     },

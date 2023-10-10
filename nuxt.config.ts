@@ -1,4 +1,7 @@
 import BilldHtmlWebpackPlugin from 'billd-html-webpack-plugin';
+import AutoImport from 'unplugin-auto-import/vite';
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
+import Components from 'unplugin-vue-components/vite';
 
 const buildDir = 'nuxt-build'; // 不要使用dist作为构建目录，否则又会有之前的standard-version问题（拼接路径错误），导致一些ts提示出错
 const env =
@@ -27,11 +30,34 @@ export default defineNuxtConfig({
           commitSubject: env !== 'prod',
         },
       }).config,
+      AutoImport({
+        imports: [
+          'vue',
+          {
+            'naive-ui': [
+              'useDialog',
+              'useMessage',
+              'useNotification',
+              'useLoadingBar',
+            ],
+          },
+        ],
+      }),
+      Components({
+        resolvers: [NaiveUiResolver()],
+      }),
     ],
     css: {
       preprocessorOptions: {
         scss: { additionalData: '@import "~/assets/styles/global.scss";' },
       },
+    },
+    // https://www.naiveui.com/zh-CN/os-theme/docs/ssr
+    optimizeDeps: {
+      include:
+        process.env.NODE_ENV === 'development'
+          ? ['naive-ui', 'vueuc', 'date-fns-tz/formatInTimeZone']
+          : [],
     },
   },
   alias: {
@@ -42,6 +68,18 @@ export default defineNuxtConfig({
   // scss: { additionalData: '@use "~/assets/styles/global.scss";' },
   css: ['~/assets/styles/normalize.css'],
   buildDir,
+  // https://www.naiveui.com/zh-CN/os-theme/docs/ssr
+  build: {
+    transpile:
+      process.env.NODE_ENV === 'production'
+        ? [
+            'naive-ui',
+            'vueuc',
+            '@css-render/vue3-ssr',
+            '@juggle/resize-observer',
+          ]
+        : ['@juggle/resize-observer'],
+  },
   devServer: {
     port,
   },
