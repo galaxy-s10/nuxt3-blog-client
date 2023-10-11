@@ -1,23 +1,7 @@
 // @use './billd-scss/index.scss' as *;
-@import './billd-scss/mixin.scss';
-@import './billd-scss/common.scss';
-@import './billd-scss/utils.scss';
-
-a {
-  color: black;
-  text-decoration: none;
-}
-
-* {
-  font-family:
-    Arial,
-    Sans-serif,
-    Microsoft YaHei,
-    '微软雅黑',
-    Lucida Grande,
-    Verdana,
-    serif !important;
-}
+// @import './billd-scss/mixin.scss';
+// @import './billd-scss/common.scss';
+// @import './billd-scss/utils.scss';
 
 $theme-color1: #0984e3;
 $theme-color2: #f9f9f9;
@@ -30,3 +14,45 @@ $theme-color8: rgba(0, 0, 0, 0.5);
 $theme-color9: #000000;
 $theme-color10: #ecf5ff99;
 $theme-color11: #a9ea7a;
+
+body {
+  margin: 0px;
+  padding: 0px;
+  background: $theme-color3;
+  color: $theme-color5;
+  font-size: 16px !important; //覆盖掉naive的n-global全局style样式
+  font-family:
+    Arial,
+    Sans-serif,
+    Microsoft YaHei,
+    '微软雅黑',
+    Lucida Grande,
+    Verdana,
+    serif !important;
+  line-height: normal !important;
+}
+
+// * {
+// font-family:
+//   Arial,
+//   Sans-serif,
+//   Microsoft YaHei,
+//   '微软雅黑',
+//   Lucida Grande,
+//   Verdana,
+//   serif !important;
+// }
+
+.hr-class {
+  margin: 20px 0;
+  height: 4px;
+  border: 0;
+  background-color: $theme-color4;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #fff,
+    #fff 4px,
+    transparent 0,
+    transparent 8px
+  );
+}

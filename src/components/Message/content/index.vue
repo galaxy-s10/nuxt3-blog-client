@@ -2,14 +2,13 @@
   <div></div>
 </template>
 
-<script lang="ts">
+<script>
 import { useMessage } from 'naive-ui';
 import { defineComponent } from 'vue';
 
+// content
 export default defineComponent({
-  components: {},
   setup() {
-    // @ts-ignore
     window.$message = useMessage();
   },
 });

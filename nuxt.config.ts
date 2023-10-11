@@ -16,7 +16,7 @@ console.log('当前端口', port);
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  // devtools: { enabled: true },
   imports: {
     dirs: ['stores', 'utils/localStorage'],
   },

@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia';
+import { IType } from '~/interface';
 
 interface RootState {
   isMobile: boolean;
   clientWidth: number;
   scrollTop: number;
-  article: any;
+  typeList: IType[];
 }
 
 export const useAppStore = defineStore('app', {
@@ -13,13 +14,13 @@ export const useAppStore = defineStore('app', {
       isMobile: false,
       clientWidth: 750,
       scrollTop: 0,
-      article: undefined,
+      typeList: [],
     };
   },
 
   actions: {
-    setArticle(val) {
-      this.article = val;
+    setTypeList(val) {
+      this.typeList = val;
     },
     changeIsMobile(val) {
       this.isMobile = val;

@@ -1,7 +1,7 @@
-import { defineNuxtPlugin } from '#app';
 import Message from '@/components/Message/index.vue';
 
 export default defineNuxtPlugin((nuxtApp: any) => {
+  console.log('333333');
   if (process.client) {
     // @ts-ignore
     const message = createApp(Message);

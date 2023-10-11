@@ -1,21 +1,11 @@
 <template>
-  <div>
-    <NMessageProvider>
-      <ContentCpt></ContentCpt>
-    </NMessageProvider>
-  </div>
+  <n-message-provider>
+    <ContentCpt></ContentCpt>
+  </n-message-provider>
 </template>
 
-<script lang="ts">
-import { NMessageProvider } from 'naive-ui';
-import { defineComponent } from 'vue';
-
+<script lang="ts" setup>
 import ContentCpt from './content/index.vue';
-
-export default defineComponent({
-  components: { NMessageProvider, ContentCpt },
-  setup() {},
-});
 </script>
 
 <style lang="scss" scoped></style>

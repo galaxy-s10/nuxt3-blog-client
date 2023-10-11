@@ -36,8 +36,8 @@ class MyAxios {
     // 响应拦截器
     this.instance.interceptors.response.use(
       (response) => {
-        console.log('response.config.url', response.config.url);
-        console.log('response.data', response.data);
+        // console.log('response.config.url', response.config.url);
+        // console.log('response.data', response.data);
         return response.data;
       },
       (error) => {

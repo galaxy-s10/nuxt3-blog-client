@@ -2,7 +2,7 @@ import { IArticle } from '@/interface';
 import request from '@/utils/request';
 
 export function fetchArticleList(params) {
-  return request.get('/article/list', params);
+  return request.get('/article/list', { params });
 }
 
 export function fetchArticleDetail(id: number) {

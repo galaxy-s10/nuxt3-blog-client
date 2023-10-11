@@ -25,14 +25,37 @@
 <script setup>
 const visible = ref(false);
 const hiddenHeader = ref(false);
-const typeList = ref([]);
 const typeId = ref(-1);
+
+const appStore = useAppStore();
+const { typeList } = toRefs(appStore);
 
 function changeType() {}
 function all() {}
 </script>
 
 <style lang="scss" scoped>
+/* 响应式布局 - 大于540px */
+@media screen and (min-width: 540px) {
+  .type-wrap {
+    width: 100%;
+  }
+}
+
+/* 响应式布局 - 大于 990px */
+@media screen and (min-width: 990px) {
+  .type-wrap {
+    width: 900px;
+  }
+}
+
+/* 响应式布局 - 大于 1200px */
+@media screen and (min-width: 1200px) {
+  .type-wrap {
+    width: 1100px;
+  }
+}
+
 /* 响应式布局,大于540px */
 @media screen and (min-width: 540px) {
   .show {

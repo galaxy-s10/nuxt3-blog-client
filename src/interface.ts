@@ -313,6 +313,13 @@ export interface IList {
   orderName?: string;
   keyWord?: string;
 }
+export interface IPaging<T> {
+  nowPage: number;
+  pageSize: number;
+  hasMore: boolean;
+  total: number;
+  rows: T[];
+}
 export interface IWorks {
   id?: number;
   name?: string;
