@@ -10,7 +10,11 @@ export default defineNuxtPlugin(function (nuxtApp) {
 
   nuxtApp.vueApp.use(VueLazyLoad, {
     preLoad: 1,
-    // error: require('~/assets/img/error_pic.webp'),
+    error: getImg(
+      import.meta.glob('../assets/images/error_pic.webp', {
+        eager: true,
+      })
+    ),
     loading: getImg(
       import.meta.glob('../assets/images/lazy.png', {
         eager: true,

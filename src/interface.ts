@@ -143,6 +143,9 @@ export interface IArticle {
   types?: number[] | IType[];
   users?: number[] | IUser[];
   keyword?: string;
+  created_at?: string;
+  updated_at?: string;
+  deleted_at?: null;
 }
 export interface IQiniuData {
   id?: number;

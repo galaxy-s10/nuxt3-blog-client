@@ -35,7 +35,6 @@
 <script lang="ts" setup>
 import { fetchWorksList } from '~/api/works';
 
-const worksList = ref([]);
 const asyncData = await useAsyncData(async () => {
   let res = await fetchWorksList({ orderName: 'created_at', orderBy: 'desc' });
   return { worksList: res.data.rows };
@@ -63,7 +62,7 @@ const asyncData = await useAsyncData(async () => {
 }
 
 .works-wrap {
-  overflow: hidden;
+  padding: 30px;
   .title {
     display: block;
     text-align: center;
@@ -131,23 +130,16 @@ const asyncData = await useAsyncData(async () => {
       }
       .bg-url {
         position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-position: 50%;
-        background-size: cover;
-        background-repeat: no-repeat;
+        transition: all 0.5s;
+
+        @extend %fullMixin;
+        @extend %coverBg;
       }
       &:hover:after {
         transform: translateY(-50%);
       }
       &::after {
         position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
         display: block;
         width: 100%;
         height: 200%;
@@ -173,6 +165,8 @@ const asyncData = await useAsyncData(async () => {
         content: '';
         transition: transform 1.4s cubic-bezier(0.19, 1, 0.22, 1);
         transform: translateY(0%);
+
+        @extend %fullMixin;
       }
     }
   }

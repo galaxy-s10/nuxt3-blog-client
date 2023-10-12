@@ -14,10 +14,10 @@
             class="li-item-link"
             target="_blank"
           >
-            <img
-              v-lazy="item.avatar"
+            <div
+              v-lazy:background-image="item.avatar"
               class="user-avatar"
-            />
+            ></div>
             <div class="desc">
               <span>{{ item.name }}</span>
               <span
@@ -30,10 +30,13 @@
           </a>
         </li>
       </template>
-      <span v-else>暂无友链~</span>
+      <span
+        v-else
+        class="null"
+      >
+        暂无友链~
+      </span>
     </ul>
-
-    <h2 class="title-desc">欢迎大家交换友链~</h2>
   </div>
 </template>
 
@@ -58,6 +61,8 @@ const asyncData = await useAsyncData(async () => {
   }
 }
 .link-wrap {
+  padding: 30px;
+
   .title {
     display: block;
     text-align: center;
@@ -99,6 +104,7 @@ const asyncData = await useAsyncData(async () => {
           height: 60px;
           border-radius: 50%;
           transition: all 0.5s;
+          @extend %coverBg;
         }
         .desc {
           flex: 1;
@@ -126,7 +132,6 @@ const asyncData = await useAsyncData(async () => {
           border-color: rgba(255, 174, 173, 1);
         }
         .user-avatar {
-          transition: all 0.5s;
           transform: rotate(360deg);
         }
         &:before {
@@ -134,10 +139,10 @@ const asyncData = await useAsyncData(async () => {
         }
       }
     }
-  }
-  .title-desc {
-    display: block;
-    text-align: center;
+    .null {
+      width: 100%;
+      text-align: center;
+    }
   }
 }
 </style>
