@@ -2,10 +2,6 @@
   <div>hi~</div>
 </template>
 
-<script setup>
-onMounted(() => {
-  window.$message.info('hi');
-});
-</script>
+<script setup></script>
 
 <style lang="scss" scoped></style>
