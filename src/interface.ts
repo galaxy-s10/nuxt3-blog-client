@@ -35,6 +35,19 @@ export interface IStar {
   comment?: any;
 }
 
+export enum FrontendKeyEnum {
+  'allow_qq_login' = 'allow_qq_login',
+  'allow_github_login' = 'allow_github_login',
+  'allow_email_login' = 'allow_email_login',
+  'allow_comment' = 'allow_comment',
+  'allow_link' = 'allow_link',
+  'allow_shutdown_modal' = 'allow_shutdown_modal',
+  'shutdown_modal_content' = 'shutdown_modal_content',
+  'allow_home_modal' = 'allow_home_modal',
+  'home_modal_content' = 'home_modal_content',
+  'about_me' = 'about_me',
+}
+
 export enum FormTypeEnum {
   'input' = 'input',
   'password' = 'password',
@@ -51,7 +64,7 @@ export enum FormTypeEnum {
 
 export interface IFrontend {
   id?: number;
-  key?: string;
+  key?: FrontendKeyEnum;
   value?: string;
   desc?: string;
   type?: FormTypeEnum;

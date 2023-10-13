@@ -7,7 +7,7 @@ const buildDir = 'nuxt-build'; // 不要使用dist作为构建目录，否则又
 const env =
   process.env.LD_NUXT_APP_RELEASE_PROJECT_ENV === 'prod' ? 'prod' : 'beta';
 const baseURL = env === 'prod' ? '/' : '/beta/';
-const port = env === 'prod' ? 7002 : 7001;
+const port = env === 'prod' ? 3400 : 3400;
 const outDir = env === 'prod' ? 'prod' : 'beta';
 const cdnPath = `https://resource.hsslive.cn/${outDir}/public`;
 
