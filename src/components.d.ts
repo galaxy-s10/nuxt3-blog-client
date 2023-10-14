@@ -7,7 +7,6 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    NButton: (typeof import('naive-ui'))['NButton'];
     NMessageProvider: (typeof import('naive-ui'))['NMessageProvider'];
     NTimeline: (typeof import('naive-ui'))['NTimeline'];
     NTimelineItem: (typeof import('naive-ui'))['NTimelineItem'];

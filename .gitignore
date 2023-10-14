@@ -11,3 +11,5 @@ node_modules
 # nuxt相关资源
 nuxt-build
 .output
+
+deploy
