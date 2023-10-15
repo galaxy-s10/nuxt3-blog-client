@@ -28,7 +28,7 @@
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 
-import { GITHUB_REPO } from '@/constant';
+import { GITHUB_REPO } from '~/constant';
 dayjs.extend(duration);
 
 const runningTime = ref();

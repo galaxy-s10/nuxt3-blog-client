@@ -49,7 +49,10 @@ export default defineNuxtConfig({
     ],
     css: {
       preprocessorOptions: {
-        scss: { additionalData: '@import "~/assets/styles/global.scss";' },
+        scss: {
+          additionalData:
+            '@use "billd-scss/src/index.scss" as *;@import "~/assets/styles/global.scss";',
+        },
       },
     },
     // https://www.naiveui.com/zh-CN/os-theme/docs/ssr
@@ -66,6 +69,7 @@ export default defineNuxtConfig({
     // utils: fileURLToPath(new URL('./src', import.meta.url)),
   },
   // scss: { additionalData: '@use "~/assets/styles/global.scss";' },
+  // scss: ['~/assets/styles/billd-scss.scss'],
   css: ['~/assets/styles/normalize.css'],
   buildDir,
   // https://www.naiveui.com/zh-CN/os-theme/docs/ssr

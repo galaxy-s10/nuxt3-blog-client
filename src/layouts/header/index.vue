@@ -25,7 +25,8 @@
                 v-if="item.badge"
                 class="badge"
               >
-                {{ item.badge > 99 ? '99+' : item.badge }}
+                <div class="min-font">hot</div>
+                <!-- {{ item.badge > 99 ? '99+' : item.badge }} -->
               </div>
             </nuxt-link>
           </li>
@@ -65,9 +66,9 @@ const navList = ref([
     path: '/msg',
   },
   {
-    title: '互动',
-    path: '/interaction',
-    badge: 0,
+    title: '直播',
+    path: '/live',
+    badge: 1,
   },
   {
     title: '关于',
@@ -173,17 +174,19 @@ async function querySearchAsync(keyWord, cb) {}
             text-decoration: none;
             .badge {
               position: absolute;
-              top: -6px;
+              top: -8px;
               right: 0px;
-              padding: 0 3px;
-              height: 16px;
-              border-radius: 6px;
+              padding: 0 1px;
+              border-radius: 3px;
               background-color: #da3231;
               color: white;
-              font-weight: bold;
-              font-size: 12px;
-              line-height: 16px;
               transform: translateX(100%);
+              .min-font {
+                line-height: 1;
+                transform-origin: center center;
+
+                @include minFont(10);
+              }
             }
           }
         }

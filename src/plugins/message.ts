@@ -1,4 +1,4 @@
-import Message from '@/components/Message/index.vue';
+import Message from '~/components/Message/index.vue';
 
 export default defineNuxtPlugin((nuxtApp: any) => {
   if (process.client) {

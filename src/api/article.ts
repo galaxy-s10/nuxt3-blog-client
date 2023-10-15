@@ -1,5 +1,5 @@
-import { IArticle, IPaging } from '@/interface';
-import request from '@/utils/request';
+import { IArticle, IPaging } from '~/interface';
+import request from '~/utils/request';
 
 export function fetchArticleList(params) {
   return request.get<IPaging<IArticle>>('/article/list', { params });

@@ -75,8 +75,8 @@
 // 小于12px字体
 @mixin minFont($size: 10) {
   @extend %minFontMixin;
-  // transform: scale(math.div($size, 12));
-  transform: scale($size / 12px);
+  transform: scale(math.div($size, 12));
+  // transform: scale($size / 12px);
 }
 
 // 充满屏幕
@@ -205,7 +205,9 @@
 // 黑色阴影
 @mixin shadow($color: black) {
   // box-shadow: 水平偏移 垂直偏移 模糊半径 阴影颜色;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1), 0 10px 10px #{$color};
+  box-shadow:
+    0 10px 10px rgba(0, 0, 0, 0.1),
+    0 10px 10px #{$color};
 }
 
 // 高斯模糊/毛玻璃效果

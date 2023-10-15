@@ -1,5 +1,5 @@
-import { lsKey } from '@/constant';
-import { lsCache } from '@/utils/cache';
+import { lsKey } from '~/constant';
+import { lsCache } from '~/utils/cache';
 
 export function getLastBuildDate() {
   return lsCache.getStorage<string>(lsKey.lastBuildDate);

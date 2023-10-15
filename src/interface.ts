@@ -1,3 +1,5 @@
+import { FormTypeEnum, FrontendKeyEnum } from '~/enum';
+
 export interface ISearchBase {
   keyWord?: string;
   nowPage?: string;
@@ -9,82 +11,66 @@ export interface ISearchBase {
   rangTimeEnd?: string;
 }
 
+export interface IList {
+  nowPage?: number;
+  pageSize?: number;
+  orderBy?: string;
+  orderName?: string;
+  keyWord?: string;
+}
+
+export interface IPaging<T> {
+  nowPage: number;
+  pageSize: number;
+  hasMore: boolean;
+  total: number;
+  rows: T[];
+}
+
+export interface ISequelizeTimestamps {
+  created_at?: string;
+  updated_at?: string;
+  deleted_at?: any;
+}
+
 export type ISearch<T, Origin = ISearchBase> = T & Origin;
 
-export interface IThirdUser {
+export interface IThirdUser extends ISequelizeTimestamps {
   id?: number;
   user_id?: number;
   third_user_id?: number;
   third_platform?: number;
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: string;
 }
-export interface IStar {
+
+export interface IStar extends ISequelizeTimestamps {
   id?: number;
   article_id?: number;
   comment_id?: number;
   from_user_id?: number;
   to_user_id?: number;
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: any;
   from_user?: IUser;
   to_user?: IUser;
   article?: any;
   comment?: any;
 }
 
-export enum FrontendKeyEnum {
-  'allow_qq_login' = 'allow_qq_login',
-  'allow_github_login' = 'allow_github_login',
-  'allow_email_login' = 'allow_email_login',
-  'allow_comment' = 'allow_comment',
-  'allow_link' = 'allow_link',
-  'allow_shutdown_modal' = 'allow_shutdown_modal',
-  'shutdown_modal_content' = 'shutdown_modal_content',
-  'allow_home_modal' = 'allow_home_modal',
-  'home_modal_content' = 'home_modal_content',
-  'about_me' = 'about_me',
-}
-
-export enum FormTypeEnum {
-  'input' = 'input',
-  'password' = 'password',
-  'number' = 'number',
-  'select' = 'select',
-  'radio' = 'radio',
-  'checkbox' = 'checkbox',
-  'markdown' = 'markdown',
-  'switch' = 'switch',
-  'upload' = 'upload',
-  'treeSelect' = 'treeSelect',
-  'datePicker' = 'datePicker',
-}
-
-export interface IFrontend {
+export interface IFrontend extends ISequelizeTimestamps {
   id?: number;
   key?: FrontendKeyEnum;
   value?: string;
   desc?: string;
   type?: FormTypeEnum;
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: string;
 }
 
-export interface IBackend {
+export interface IBackend extends ISequelizeTimestamps {
   id?: number;
   key?: string;
   value?: string;
   desc?: string;
   type?: FormTypeEnum;
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: string;
 }
 
-export interface IComment {
+export interface IComment extends ISequelizeTimestamps {
   id?: number;
   from_user_id?: number;
   content?: string;
@@ -102,38 +88,30 @@ export interface IComment {
   stars?: any[];
   star_total?: number;
   status?: number;
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: string;
 }
 
-export interface IAuth {
+export interface IAuth extends ISequelizeTimestamps {
   id?: number;
   auth_name?: string;
   auth_value?: string;
   type?: number;
   priority?: number | string;
   p_id?: number | null;
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: null;
   c_auths?: number[];
 }
 
-export interface IRole {
+export interface IRole extends ISequelizeTimestamps {
   id?: number;
   role_name?: string;
   role_value?: string;
   type?: number;
   priority?: number | string;
   p_id?: number | null;
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: null;
   role_auths?: number[];
   c_roles?: number[];
 }
-export interface ITheme {
+
+export interface ITheme extends ISequelizeTimestamps {
   id?: number;
   model?: number;
   key?: string;
@@ -142,7 +120,7 @@ export interface ITheme {
   desc?: string;
 }
 
-export interface IArticle {
+export interface IArticle extends ISequelizeTimestamps {
   id?: number;
   title?: string;
   desc?: string;
@@ -156,11 +134,9 @@ export interface IArticle {
   types?: number[] | IType[];
   users?: number[] | IUser[];
   keyword?: string;
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: null;
 }
-export interface IQiniuData {
+
+export interface IQiniuData extends ISequelizeTimestamps {
   id?: number;
   user_id?: number;
   prefix?: string;
@@ -175,7 +151,7 @@ export interface IQiniuData {
   qiniu_md5?: string;
 }
 
-export interface ILog {
+export interface ILog extends ISequelizeTimestamps {
   id?: number;
   user_id?: number;
   api_user_agent?: string;
@@ -195,7 +171,8 @@ export interface ILog {
   api_err_msg?: string;
   api_err_code?: number;
 }
-export interface IVisitorLog {
+
+export interface IVisitorLog extends ISequelizeTimestamps {
   id?: number;
   user_id?: number;
   ip?: string;
@@ -203,30 +180,26 @@ export interface IVisitorLog {
   ip_data?: string;
 }
 
-export interface IBlacklist {
+export interface IBlacklist extends ISequelizeTimestamps {
   id?: number;
   ip?: string;
   user_id?: number;
   type?: number;
   msg?: string;
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: string;
 }
-export interface IMonit {
+
+export interface IMonit extends ISequelizeTimestamps {
   id?: number;
   type?: number;
   info?: string;
 }
 
-export interface IEmailUser {
+export interface IEmailUser extends ISequelizeTimestamps {
   id?: number;
   email?: string;
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: any;
 }
-export interface IGithubUser {
+
+export interface IGithubUser extends ISequelizeTimestamps {
   id?: number;
   client_id?: string;
   login?: string;
@@ -258,11 +231,9 @@ export interface IGithubUser {
   disk_usage?: number;
   collaborators?: number;
   two_factor_authentication?: string;
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: any;
 }
-export interface IUser {
+
+export interface IUser extends ISequelizeTimestamps {
   id?: number;
   username?: string;
   password?: string;
@@ -271,14 +242,12 @@ export interface IUser {
   desc?: string;
   token?: string;
   user_roles?: number[];
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: string;
   github_users?: IGithubUser[];
   qq_users?: IQqUser[];
   email_users?: IEmailUser[];
 }
-export interface IQqUser {
+
+export interface IQqUser extends ISequelizeTimestamps {
   id?: number;
   client_id?: number;
   openid?: string;
@@ -294,12 +263,9 @@ export interface IQqUser {
   city?: string;
   province?: string;
   year?: string;
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: any;
 }
 
-export interface ILink {
+export interface ILink extends ISequelizeTimestamps {
   id?: number;
   email?: string;
   name?: string;
@@ -307,36 +273,18 @@ export interface ILink {
   desc?: string;
   url?: string;
   status?: number;
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: any;
 }
-export interface IMusic {
+
+export interface IMusic extends ISequelizeTimestamps {
   id?: number;
   name?: string;
   cover_pic?: string | any[] | null;
   author?: string;
   audio_url?: string | any[] | null;
   status?: number;
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: any;
 }
-export interface IList {
-  nowPage?: number;
-  pageSize?: number;
-  orderBy?: string;
-  orderName?: string;
-  keyWord?: string;
-}
-export interface IPaging<T> {
-  nowPage: number;
-  pageSize: number;
-  hasMore: boolean;
-  total: number;
-  rows: T[];
-}
-export interface IWorks {
+
+export interface IWorks extends ISequelizeTimestamps {
   id?: number;
   name?: string;
   desc?: string;
@@ -346,24 +294,14 @@ export interface IWorks {
   status?: number;
 }
 
-export interface ITag {
+export interface ITag extends ISequelizeTimestamps {
   id?: number;
   name?: string;
   color?: string;
+  article_total?: number;
 }
-export interface IType {
+
+export interface IType extends ISequelizeTimestamps {
   id?: number;
   name?: string;
-}
-
-export enum modalTypeEnum {
-  EDIT = 1,
-  ADD = 2,
-  BATCH_DELETE = 4,
-  BATCH_ADD = 5,
-}
-
-export enum modalUserTypeEnum {
-  EDIT = 1,
-  EDIT_ROLE = 2,
 }

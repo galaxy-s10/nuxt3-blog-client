@@ -10,7 +10,7 @@
 
 <script lang="ts" setup>
 import { fetchFrontendDetail } from '~/api/frontend';
-import { FrontendKeyEnum } from '~/interface';
+import { FrontendKeyEnum } from '~/enum';
 
 const asyncData = await useAsyncData(async () => {
   let res = await fetchFrontendDetail();

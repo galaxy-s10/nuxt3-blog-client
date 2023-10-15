@@ -8,3 +8,5 @@ interface Window {
     default: any;
   };
 }
+
+declare global {}
