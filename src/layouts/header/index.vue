@@ -68,6 +68,10 @@ const navList = ref([
   {
     title: '直播',
     path: '/live',
+  },
+  {
+    title: '时间胶囊',
+    path: '/capsule',
     badge: 1,
   },
   {

@@ -2,14 +2,13 @@ import BilldHtmlWebpackPlugin from 'billd-html-webpack-plugin';
 import AutoImport from 'unplugin-auto-import/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
+import pkg from './package.json';
 
 const buildDir = 'nuxt-build'; // 不要使用dist作为构建目录，否则又会有之前的standard-version问题（拼接路径错误），导致一些ts提示出错
-const env =
-  process.env.LD_NUXT_APP_RELEASE_PROJECT_ENV === 'prod' ? 'prod' : 'beta';
-const baseURL = env === 'prod' ? '/' : '/beta/';
-const port = env === 'prod' ? 3400 : 3400;
-const outDir = env === 'prod' ? 'prod' : 'beta';
-const cdnPath = `https://resource.hsslive.cn/${outDir}/public`;
+const env = 'prod';
+const baseURL = '/';
+const port = 3400;
+const cdnPath = `https://resource.hsslive.cn/${pkg.name}/${pkg.version}/public`;
 
 console.log('当前环境', env);
 console.log('当前端口', port);
