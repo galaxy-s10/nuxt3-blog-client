@@ -45,34 +45,38 @@ const navList = ref([
     title: '首页',
     path: '/',
   },
+  // {
+  //   title: '归档',
+  //   path: '/history',
+  // },
+  // {
+  //   title: '标签',
+  //   path: '/tag/1',
+  // },
+  // {
+  //   title: '作品',
+  //   path: '/works',
+  // },
+  // {
+  //   title: '友链',
+  //   path: '/link',
+  // },
+
   {
-    title: '归档',
-    path: '/history',
+    title: '现在',
+    path: '/now',
   },
   {
-    title: '标签',
-    path: '/tag/1',
+    title: '过去',
+    path: '/past',
   },
   {
-    title: '作品',
-    path: '/works',
-  },
-  {
-    title: '友链',
-    path: '/link',
+    title: '未来',
+    path: '/future',
   },
   {
     title: '留言',
     path: '/msg',
-  },
-  {
-    title: '直播',
-    path: '/live',
-  },
-  {
-    title: '时间胶囊',
-    path: '/capsule',
-    badge: 1,
   },
   {
     title: '关于',
