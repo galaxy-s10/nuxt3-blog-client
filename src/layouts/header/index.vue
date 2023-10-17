@@ -61,17 +61,16 @@ const navList = ref([
   //   title: '友链',
   //   path: '/link',
   // },
-
-  {
-    title: '现在',
-    path: '/now',
-  },
+  // {
+  //   title: '现在',
+  //   path: '/now',
+  // },
   {
     title: '过去',
     path: '/past',
   },
   {
-    title: '未来',
+    title: '将来',
     path: '/future',
   },
   {
