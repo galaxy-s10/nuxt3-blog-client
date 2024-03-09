@@ -3,6 +3,7 @@
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import semver from 'semver';
 import trash from 'trash';
 
 const allFile = [];
@@ -72,16 +73,42 @@ async function clearOld() {
   await Promise.all(queue);
 }
 
-clearOld().then(() => {
-  findFile(dir);
-  putFile();
-  const gitignoreTxt =
-    'node_modules\n.eslintcache\n.output\n.DS_Store\n/nuxt-build\n';
-  fs.writeFileSync(path.resolve(giteeDir, './.gitignore'), gitignoreTxt);
-  execSync(`pnpm i`, { cwd: giteeDir });
-  execSync(`git add .`, { cwd: giteeDir });
-  execSync(`git commit -m 'feat: ${new Date().toLocaleString()}'`, {
-    cwd: giteeDir,
+const newPkgStr = fs.readFileSync(
+  path.resolve(giteeDir, 'package.json'),
+  'utf-8'
+);
+const oldPkgStr = fs.readFileSync(
+  path.resolve(giteeDir, 'package.json'),
+  'utf-8'
+);
+const oldPkg = JSON.parse(oldPkgStr);
+const newPkg = JSON.parse(newPkgStr);
+const newVersion = semver.inc(oldPkg.version, 'patch');
+
+if (process.cwd().indexOf('jenkins') !== -1) {
+  console.log('当前目录错误');
+} else {
+  clearOld().then(() => {
+    findFile(dir);
+    putFile();
+    const gitignoreTxt =
+      'node_modules\n.eslintcache\n.output\n.DS_Store\n/nuxt-build\n';
+    fs.writeFileSync(path.resolve(giteeDir, './.gitignore'), gitignoreTxt);
+    fs.writeFileSync(path.resolve(giteeDir, './.gitignore'), gitignoreTxt);
+    fs.writeFileSync(
+      path.resolve(giteeDir, 'package.json'),
+      // @ts-ignore
+      JSON.stringify({ ...newPkg, version: newVersion }, {}, 2)
+    );
+    execSync(`pnpm i`, { cwd: giteeDir });
+    execSync(`git add .`, { cwd: giteeDir });
+    execSync(`git commit -m 'feat: ${new Date().toLocaleString()}'`, {
+      cwd: giteeDir,
+    });
+    execSync(`git tag v${newVersion} -m 'chore(release): ${newVersion}'`, {
+      cwd: giteeDir,
+    });
+    execSync(`git push`, { cwd: giteeDir });
+    execSync(`git push origin v${newVersion}`, { cwd: giteeDir });
   });
-  execSync(`git push`, { cwd: giteeDir });
-});
+}
