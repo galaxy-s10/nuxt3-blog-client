@@ -1,6 +1,6 @@
 {
   "name": "nuxt3-blog-client",
-  "version": "0.0.12",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/galaxy-s10/nuxt3-blog-client"
@@ -8,8 +8,8 @@
   "scripts": {
     "build:beta": "cross-env LD_NUXT_APP_RELEASE_PROJECT_ENV=beta nuxt build --beta",
     "build:prod": "cross-env LD_NUXT_APP_RELEASE_PROJECT_ENV=prod nuxt build --prod",
+    "copy": "node ./deploy/handleGiteeJenkins.mjs",
     "cz": "cz",
-    "copy": "node ./handleGiteeJenkins.js",
     "deploy:beta": "node ./deploy/index.js --beta",
     "deploy:prod": "node ./deploy/index.js --prod",
     "generate": "nuxt generate",
