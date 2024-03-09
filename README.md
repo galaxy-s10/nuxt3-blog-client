@@ -5,3 +5,9 @@
 > 图床，记录图片
 > 直播，记录视频
 > 留言/弹幕
+
+> 更新 billd 相关依赖：
+
+```bash
+pnpm i billd-utils@latest billd-scss@latest billd-deploy@latest billd-html-webpack-plugin@latest
+```
