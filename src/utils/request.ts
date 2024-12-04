@@ -8,9 +8,8 @@ export interface IResponse<T = any>
   }> {}
 
 interface MyAxiosInstance extends Axios {
-  // eslint-disable-next-line
   (config: AxiosRequestConfig): IResponse;
-  // eslint-disable-next-line
+
   (url: string, config?: AxiosRequestConfig): IResponse;
 }
 
@@ -42,7 +41,7 @@ class MyAxios {
       },
       (error) => {
         console.log('响应拦截到错误', error);
-        if (error.message.indexOf('timeout') !== -1) {
+        if (error.message.includes('timeout')) {
           console.error(error.message);
           window.$message.error('请求超时，请重试');
         }

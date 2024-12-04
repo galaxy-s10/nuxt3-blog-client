@@ -1,12 +1,12 @@
 <template>
-  <div class="home-wrap">hi</div>
+  <div class="home-wrap">home</div>
 </template>
 
-<script setup></script>
+<script lant="ts" setup></script>
 
 <style lang="scss" scoped>
 .home-wrap {
-  padding: 30px;
+  background-color: white;
   .title {
     display: block;
     text-align: center;

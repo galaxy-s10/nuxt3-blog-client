@@ -10,7 +10,10 @@
 import { fetchWorksList } from '~/api/works';
 
 const asyncData = await useAsyncData(async () => {
-  let res = await fetchWorksList({ orderName: 'created_at', orderBy: 'desc' });
+  const res = await fetchWorksList({
+    orderName: 'created_at',
+    orderBy: 'desc',
+  });
   return { worksList: res.data.rows };
 });
 </script>

@@ -4,7 +4,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   if (process.server) {
     // @ts-ignore
     const appStore = useAppStore(nuxtApp.$pinia);
-    let res = await fetchTypeList({});
+    const res = await fetchTypeList({});
     appStore.setTypeList(res.data.rows);
   }
 });

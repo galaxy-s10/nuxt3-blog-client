@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { StyleValue, defineComponent, ref } from 'vue';
+import { defineComponent, ref, type StyleValue } from 'vue';
 
 export default defineComponent({
   setup() {

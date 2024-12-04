@@ -1,6 +1,6 @@
 <template>
   <div class="about-wrap">
-    <h1 class="title">关于</h1>
+    <h1 class="title">互动</h1>
     <hr class="hr-class" />
     <RenderMarkdown
       :md="asyncData.data.value?.frontendDetail[FrontendKeyEnum.about_me].value"

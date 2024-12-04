@@ -44,7 +44,7 @@
 import { fetchLinkList } from '~/api/link';
 
 const asyncData = await useAsyncData(async () => {
-  let res = await fetchLinkList({ orderName: 'created_at', orderBy: 'desc' });
+  const res = await fetchLinkList({ orderName: 'created_at', orderBy: 'desc' });
   return { linkList: res.data.rows };
 });
 </script>

@@ -35,56 +35,11 @@ function all() {}
 </script>
 
 <style lang="scss" scoped>
-/* 响应式布局 - 大于540px */
-@media screen and (min-width: 540px) {
-  .type-wrap {
-    width: 100%;
-  }
-}
+/* 屏幕宽度大于 1200px */
 
-/* 响应式布局 - 大于 990px */
-@media screen and (min-width: 990px) {
-  .type-wrap {
-    width: 900px;
-  }
-}
-
-/* 响应式布局 - 大于 1200px */
-@media screen and (min-width: 1200px) {
-  .type-wrap {
-    width: 1100px;
-  }
-}
-
-/* 响应式布局,大于540px */
-@media screen and (min-width: 540px) {
-  .show {
-    transform: translateY(-60px);
-  }
-}
-
-.dark {
-  .fix-type-wrap {
-    background: $theme-color3;
-  }
-}
-.active {
-  position: relative;
-  &::after {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: rgba($color: #604bc3, $alpha: 0.6);
-    content: '';
-    transform: translate(90%, -50%);
-  }
-}
 .fix-type-wrap {
   position: fixed;
-  top: 60px;
+  top: $fix-header-height;
   left: 0;
   z-index: 99;
   width: 100%;
@@ -99,16 +54,50 @@ function all() {}
   .type-wrap {
     display: flex;
     align-items: center;
+    box-sizing: border-box;
     margin: 0 auto;
     padding: 0;
+    width: 1100px;
     height: 40px;
     color: $theme-color1;
+    .active {
+      position: relative;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: rgba($color: #604bc3, $alpha: 0.6);
+        content: '';
+        transform: translate(90%, -50%);
+      }
+    }
     li {
       display: block;
       margin-right: 10px;
       cursor: pointer;
 
       user-select: none;
+    }
+  }
+}
+
+/* 屏幕宽度小于 1200px */
+@media screen and (max-width: 1200px) {
+  .fix-type-wrap {
+    .type-wrap {
+      width: 90%;
+    }
+  }
+}
+/* 屏幕宽度小于 990px */
+@media screen and (max-width: 990px) {
+  .fix-type-wrap {
+    .type-wrap {
+      padding: 0 10px;
+      width: 100%;
     }
   }
 }

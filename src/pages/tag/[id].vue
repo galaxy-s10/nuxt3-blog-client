@@ -13,9 +13,9 @@
           custom
         >
           <div
-            @click="navigate"
-            class="head-img"
             v-lazy:background-image="item.head_img"
+            class="head-img"
+            @click="navigate"
           ></div>
         </nuxt-link>
         <nuxt-link
@@ -43,8 +43,8 @@
         <div class="hr-class"></div>
         <div class="summary">
           <div
-            class="user-avatar"
             v-lazy:background-image="item.users[0] && item.users[0].avatar"
+            class="user-avatar"
           ></div>
           <span class="jgh"></span>
           <span>{{ convertDate(item.created_at) }}</span>
@@ -73,7 +73,7 @@ const route = useRoute();
 const tagId = ref(Number(route.params.id));
 
 const asyncData = await useAsyncData(async () => {
-  let res = await fetchTagArticleList({ tagId: tagId.value, params: query });
+  const res = await fetchTagArticleList({ tagId: tagId.value, params: query });
   return { tagArticleList: res.data };
 });
 </script>

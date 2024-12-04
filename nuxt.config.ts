@@ -1,4 +1,5 @@
-import BilldHtmlWebpackPlugin from 'billd-html-webpack-plugin';
+// import BilldHtmlWebpackPlugin from 'billd-html-webpack-plugin';
+
 import AutoImport from 'unplugin-auto-import/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
@@ -22,13 +23,13 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       // @ts-ignore
-      new BilldHtmlWebpackPlugin({
-        env: 'nuxt3-6',
-        log: {
-          pkgRepository: env !== 'prod',
-          commitSubject: env !== 'prod',
-        },
-      }).config,
+      // new BilldHtmlWebpackPlugin({
+      //   env: 'nuxt3-6',
+      //   log: {
+      //     pkgRepository: env !== 'prod',
+      //     commitSubject: env !== 'prod',
+      //   },
+      // }).config,
       AutoImport({
         imports: [
           'vue',
@@ -55,12 +56,12 @@ export default defineNuxtConfig({
       },
     },
     // https://www.naiveui.com/zh-CN/os-theme/docs/ssr
-    optimizeDeps: {
-      include:
-        process.env.NODE_ENV === 'development'
-          ? ['naive-ui', 'vueuc', 'date-fns-tz/formatInTimeZone']
-          : [],
-    },
+    // optimizeDeps: {
+    //   include:
+    //     process.env.NODE_ENV === 'development'
+    //       ? ['naive-ui', 'vueuc', 'date-fns-tz/formatInTimeZone']
+    //       : [],
+    // },
   },
   alias: {
     // '~': fileURLToPath(new URL('./src', import.meta.url)),
@@ -85,15 +86,16 @@ export default defineNuxtConfig({
   },
   devServer: {
     port,
+    host: '0.0.0.0',
   },
-  modules: ['@nuxt/image', '@pinia/nuxt'],
+  modules: ['@nuxt/image', '@pinia/nuxt', 'nuxtjs-naive-ui'],
   srcDir: 'src/',
   image: {
     ipx: {
       // 不管正式还是测试环境，nuxt-img都使用/_ipx/前缀
       // https://github.com/nuxt/image/issues/665
       // @ts-ignore
-      baseURL: `/_ipx/`, // <= Add this config
+      baseURL: '/_ipx/', // <= Add this config
     },
   },
   app: {
@@ -102,7 +104,7 @@ export default defineNuxtConfig({
         {
           rel: 'icon',
           type: 'image/x-icon',
-          href: env === 'prod' ? cdnPath + '/favicon.ico' : '/favicon.ico',
+          href: env === 'prod' ? `${cdnPath}/favicon.ico` : '/favicon.ico',
         },
       ],
     },

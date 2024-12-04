@@ -18,124 +18,102 @@
             :key="index"
             class="item"
           >
-            <!-- https://router.vuejs.org/zh/api/#custom，默认用a标签包裹元素，可以添加custom改掉这个行为 -->
-            <nuxt-link :to="item.path">
-              <span>{{ item.title }}</span>
+            <nuxt-link :to="item.key">
+              <span>{{ item.label }}</span>
               <div
                 v-if="item.badge"
                 class="badge"
               >
                 <div class="min-font">hot</div>
-                <!-- {{ item.badge > 99 ? '99+' : item.badge }} -->
               </div>
             </nuxt-link>
           </li>
         </ul>
-        <div class="nav-menu-mini"></div>
+        <div class="nav-menu-mini">
+          <n-dropdown
+            trigger="hover"
+            :options="navList"
+            :show-arrow="true"
+            @select="handleSelect"
+          >
+            <div class="nav-txt">
+              <div class="txt">
+                {{ navList.find((v) => v.key === $route.path)?.label }}
+              </div>
+              <div class="ico" />
+            </div>
+          </n-dropdown>
+        </div>
       </nav>
-      <div class="search"></div>
+      <div class="search-cpt">
+        <n-input
+          round
+          placeholder="搜索"
+        >
+          <template #suffix>
+            <n-icon :component="SearchOutline" />
+          </template>
+        </n-input>
+      </div>
+      <div class="login-cpt">
+        <LoginDropdown />
+      </div>
     </div>
   </header>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+import { SearchOutline } from '@vicons/ionicons5';
+
+const router = useRouter();
 const hiddenHeader = ref(false);
 const navList = ref([
   {
-    title: '首页',
-    path: '/',
-  },
-  // {
-  //   title: '归档',
-  //   path: '/history',
-  // },
-  // {
-  //   title: '标签',
-  //   path: '/tag/1',
-  // },
-  // {
-  //   title: '作品',
-  //   path: '/works',
-  // },
-  // {
-  //   title: '友链',
-  //   path: '/link',
-  // },
-  // {
-  //   title: '现在',
-  //   path: '/now',
-  // },
-  {
-    title: '过去',
-    path: '/past',
+    label: '首页',
+    key: '/',
   },
   {
-    title: '将来',
-    path: '/future',
+    label: '归档',
+    key: '/history',
   },
   {
-    title: '留言',
-    path: '/msg',
+    label: '标签',
+    key: '/tag/1',
   },
   {
-    title: '关于',
-    path: '/about',
+    label: '作品',
+    key: '/works',
+  },
+  {
+    label: '友链',
+    key: '/link',
+  },
+  {
+    label: '留言',
+    key: '/msg',
+  },
+  {
+    label: '互动',
+    key: '/interaction',
+    badge: '',
+  },
+  {
+    label: '关于',
+    key: '/about',
   },
 ]);
-const visible = ref(true);
-const title = ref('首页');
-const keyWord = ref('');
 
-function handleCommand() {}
-function handleSelect() {}
-async function querySearchAsync(keyWord, cb) {}
+function handleSelect(_key, option) {
+  router.push(option.key);
+}
 </script>
 
 <style lang="scss" scope>
-/* 响应式布局 - 大于540px */
-@media screen and (min-width: 540px) {
-  .type-wrap {
-    width: 100%;
-  }
-}
-
-/* 响应式布局 - 大于 990px */
-@media screen and (min-width: 990px) {
-  .header-wrap {
-    width: 960px;
-  }
-}
-
-/* 响应式布局 - 大于 1200px */
-@media screen and (min-width: 1200px) {
-  .header-wrap {
-    width: 1200px;
-  }
-}
-
-@media screen and (max-width: 540px) {
-  .header {
-    height: 50px;
-    line-height: 50px;
-  }
-  .search {
-    width: 30%;
-  }
-  .logo h2 {
-    font-size: 18px;
-  }
-  .logo h2 sup {
-    font-size: 10px;
-  }
-}
-.dark {
-  .fix-header-wrap {
-    background: $theme-color3;
-  }
-}
+/* 屏幕宽度大于 1200px */
 .fix-header-wrap {
   position: fixed;
   top: 0;
+  left: 0;
   z-index: 100;
   width: 100%;
   border-bottom: 1px solid $theme-color2;
@@ -149,9 +127,11 @@ async function querySearchAsync(keyWord, cb) {}
   .header-wrap {
     display: flex;
     justify-content: space-between;
+    box-sizing: border-box;
     margin: 0 auto;
-    height: 60px;
-    line-height: 60px;
+    width: 1200px;
+    height: $fix-header-height;
+    line-height: $fix-header-height;
     .logo {
       font-size: 20px;
       cursor: pointer;
@@ -215,7 +195,64 @@ async function querySearchAsync(keyWord, cb) {}
       .nav-menu-mini {
         display: none;
         text-align: center;
+        .nav-txt {
+          font-size: 14px;
+        }
       }
+    }
+    .search-cpt {
+      width: 200px;
+    }
+  }
+}
+
+/* 屏幕宽度小于 1200px */
+@media screen and (max-width: 1200px) {
+  .fix-header-wrap {
+    .header-wrap {
+      width: 90%;
+    }
+  }
+}
+
+/* 屏幕宽度小于 990px */
+@media screen and (max-width: 990px) {
+  .fix-header-wrap {
+    .header-wrap {
+      padding: 0 10px;
+      width: 100%;
+      .nav {
+        .nav-menu {
+          .item {
+            margin: 0 10px;
+          }
+        }
+      }
+
+      .search-cpt {
+        width: 130px;
+      }
+    }
+  }
+}
+
+/* 屏幕宽度小于 720px */
+@media screen and (max-width: 720px) {
+  .fix-header-wrap {
+    .header-wrap {
+      width: 100%;
+      .nav-menu {
+        display: none !important;
+      }
+      .nav-menu-mini {
+        display: block !important;
+      }
+      .search-cpt {
+        width: 140px;
+      }
+    }
+    .type-wrap {
+      width: 100%;
     }
   }
 }

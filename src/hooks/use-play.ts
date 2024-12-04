@@ -8,7 +8,7 @@ import { usePiniaCacheStore } from '~/stores/cache';
 import { createVideo } from '~/utils';
 
 export function useFlvPlay() {
-  let mpegts = undefined;
+  let mpegts;
   // const flvPlayer = ref<flvJs.Player>();
   const flvPlayer = ref();
   // const flvPlayer = ref<mpegts.Player>();

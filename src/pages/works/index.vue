@@ -10,8 +10,8 @@
         class="item-wrap"
       >
         <div
-          class="bg-url"
           v-lazy:background-image="item.bg_url"
+          class="bg-url"
         ></div>
         <div class="item">
           <h2 class="name">{{ item.name }}</h2>
@@ -36,7 +36,10 @@
 import { fetchWorksList } from '~/api/works';
 
 const asyncData = await useAsyncData(async () => {
-  let res = await fetchWorksList({ orderName: 'created_at', orderBy: 'desc' });
+  const res = await fetchWorksList({
+    orderName: 'created_at',
+    orderBy: 'desc',
+  });
   return { worksList: res.data.rows };
 });
 </script>

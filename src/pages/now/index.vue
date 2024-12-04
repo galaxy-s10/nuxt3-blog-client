@@ -12,20 +12,20 @@
       </span>
     </h2>
     <div
-      class="width"
       ref="widthRef"
+      class="width"
     ></div>
     <div
+      v-loading="videoLoading"
       class="video-wrap"
       :style="{
         '--width': videoWidth + 'px',
       }"
-      v-loading="videoLoading"
     >
       <div ref="remoteVideoRef"></div>
       <VideoControls
-        @click.stop
         :resolution="videoHeight"
+        @click.stop
         @refresh="handlePlay"
       ></VideoControls>
     </div>

@@ -50,7 +50,7 @@ function putFile() {
       // 数组的最后一个一定是文件，因此不需要判断它是不是目录
       if (index !== arr.length - 1) {
         const flag = fs.existsSync(item);
-        // eslint-disable-next-line
+
         !flag && fs.mkdirSync(item);
       }
     });
@@ -85,7 +85,7 @@ const oldPkg = JSON.parse(oldPkgStr);
 const newPkg = JSON.parse(newPkgStr);
 const newVersion = semver.inc(oldPkg.version, 'patch');
 
-if (process.cwd().indexOf('jenkins') !== -1) {
+if (process.cwd().includes('jenkins')) {
   console.log('当前目录错误');
 } else {
   clearOld().then(() => {

@@ -7,7 +7,11 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    NButton: (typeof import('naive-ui'))['NButton'];
+    NConfigProvider: (typeof import('naive-ui'))['NConfigProvider'];
+    NDropdown: (typeof import('naive-ui'))['NDropdown'];
     NIcon: (typeof import('naive-ui'))['NIcon'];
+    NInput: (typeof import('naive-ui'))['NInput'];
     NMessageProvider: (typeof import('naive-ui'))['NMessageProvider'];
     NPagination: (typeof import('naive-ui'))['NPagination'];
     NPopover: (typeof import('naive-ui'))['NPopover'];

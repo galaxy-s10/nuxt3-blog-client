@@ -51,8 +51,8 @@
 
     <div class="right">
       <div
-        class="resolution"
         v-if="resolution"
+        class="resolution"
       >
         {{ resolution }}
       </div>
@@ -68,10 +68,10 @@
           :class="{ show: showLine }"
         >
           <div
-            class="iten"
-            :class="{ active: appStore.liveLine === item }"
             v-for="item in LiveLineEnum"
             :key="item"
+            class="iten"
+            :class="{ active: appStore.liveLine === item }"
             @click="changeLiveLine(item)"
           >
             {{ item }}

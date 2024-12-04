@@ -35,7 +35,7 @@ async function changeNowpage(nowPage) {
 }
 
 const asyncData = await useAsyncData(async () => {
-  let res = await fetchArticleList({
+  const res = await fetchArticleList({
     orderName: 'created_at',
     orderBy: 'desc',
     ...query,

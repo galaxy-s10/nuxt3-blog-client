@@ -1,4 +1,4 @@
-import { ComponentPublicInstance, StyleValue, createApp } from 'vue';
+import { createApp, type ComponentPublicInstance, type StyleValue } from 'vue';
 
 import main from './main.vue';
 

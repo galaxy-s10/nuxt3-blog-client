@@ -38,7 +38,7 @@ function getTagArticle(item: ITag) {
 }
 
 const asyncData = await useAsyncData(async () => {
-  let res = await fetchTagList({
+  const res = await fetchTagList({
     orderName: 'created_at',
     orderBy: 'desc',
   });

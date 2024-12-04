@@ -4,10 +4,10 @@
 # Date: 2022-08-09 12:55:48
 # Description: https://github.com/galaxy-s10/sh/
 # Email: 2274751790@qq.com
-# FilePath: /nuxt3-blog-client/deploy/nuxt-pm2.sh
+# FilePath: /galaxy-s10/nuxt3-blog-client/deploy/nuxt-pm2.sh
 # Github: https://github.com/galaxy-s10
 # LastEditors: shuisheng
-# LastEditTime: 2024-03-09 16:57:40
+# LastEditTime: 2024-03-14 14:16:13
 ###
 
 # 生成头部文件快捷键: ctrl+cmd+i
@@ -48,7 +48,7 @@ pnpm -v
 
 echo 设置pnpm淘宝镜像:
 pnpm config set registry https://registry.npmmirror.com/
-pnpm config set @billd:registry http://registry.hsslive.cn/
+pnpm config set @billd:registry https://registry.hsslive.cn/
 
 echo 查看当前pnpm镜像:
 pnpm config get registry
@@ -78,7 +78,7 @@ pm2 del $JOBNAME-$ENV-$PORT
 
 echo 使用pm2维护:
 # pm2 start './node_modules/nuxt/bin/nuxt.js' --name nuxt-blog-client-null-3000 -i 1 -- start
-export PORT=$PORT && pm2 start './.output/server/index.mjs' --name $JOBNAME-$ENV-$PORT -i -1
+export PORT=$PORT && pm2 start './.output/server/index.mjs' --name $JOBNAME-$ENV-$PORT -i 1
 
 # pm2-runtime start './node_modules/nuxt/bin/nuxt.js' --name nuxt-blog-client-null-3000 -i 2 -- start
 # pm2-runtime start './node_modules/nuxt/bin/nuxt.js' --name $JOBNAME-$ENV-$PORT -i 2 -- start
