@@ -8,7 +8,7 @@ const buildDir = 'nuxt-build'; // 不要使用dist作为构建目录，否则又
 const env = 'prod';
 const baseURL = '/';
 const port = 3400;
-const cdnPath = `https://tencentcos-res.hsslive.cn/public`;
+const cdnPath = `https://tencentcos-res.hsslive.cn/nuxt3-blog-client/public`;
 
 console.log('当前环境', env);
 console.log('当前端口', port);

@@ -82,7 +82,6 @@ const oldPkgStr = fs.readFileSync(
   'utf-8'
 );
 const oldPkg = JSON.parse(oldPkgStr);
-const newPkg = JSON.parse(newPkgStr);
 const newVersion = semver.inc(oldPkg.version, 'patch');
 
 if (process.cwd().includes('jenkins')) {
@@ -95,11 +94,6 @@ if (process.cwd().includes('jenkins')) {
       'node_modules\n.eslintcache\n.output\n.DS_Store\n/nuxt-build\n';
     fs.writeFileSync(path.resolve(giteeDir, './.gitignore'), gitignoreTxt);
     fs.writeFileSync(path.resolve(giteeDir, './.gitignore'), gitignoreTxt);
-    fs.writeFileSync(
-      path.resolve(giteeDir, 'package.json'),
-      // @ts-ignore
-      JSON.stringify({ ...newPkg, version: newVersion }, {}, 2)
-    );
     execSync(`pnpm i`, { cwd: giteeDir });
     execSync(`git add .`, { cwd: giteeDir });
     execSync(`git commit -m 'feat: ${new Date().toLocaleString()}'`, {
