@@ -3,13 +3,12 @@
 import AutoImport from 'unplugin-auto-import/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
-import pkg from './package.json';
 
 const buildDir = 'nuxt-build'; // 不要使用dist作为构建目录，否则又会有之前的standard-version问题（拼接路径错误），导致一些ts提示出错
 const env = 'prod';
 const baseURL = '/';
 const port = 3400;
-const cdnPath = `https://resource.hsslive.cn/${pkg.name}/${pkg.version}/public`;
+const cdnPath = `https://tencentcos-res.hsslive.cn/public`;
 
 console.log('当前环境', env);
 console.log('当前端口', port);
@@ -19,6 +18,12 @@ export default defineNuxtConfig({
   // devtools: { enabled: true },
   imports: {
     dirs: ['stores', 'utils/localStorage'],
+  },
+  // 使用了nuxt-multi-cache，multiCache必须要写
+  multiCache: {
+    route: {
+      enabled: true,
+    },
   },
   vite: {
     plugins: [
@@ -88,7 +93,12 @@ export default defineNuxtConfig({
     port,
     host: '0.0.0.0',
   },
-  modules: ['@nuxt/image', '@pinia/nuxt', 'nuxtjs-naive-ui'],
+  modules: [
+    'nuxt-multi-cache',
+    '@nuxt/image',
+    '@pinia/nuxt',
+    'nuxtjs-naive-ui',
+  ],
   srcDir: 'src/',
   image: {
     ipx: {
