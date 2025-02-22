@@ -1,4 +1,4 @@
-// import BilldHtmlWebpackPlugin from 'billd-html-webpack-plugin';
+import BilldHtmlWebpackPlugin from 'billd-html-webpack-plugin';
 
 import AutoImport from 'unplugin-auto-import/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
@@ -28,13 +28,13 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       // @ts-ignore
-      // new BilldHtmlWebpackPlugin({
-      //   env: 'nuxt3-6',
-      //   log: {
-      //     pkgRepository: env !== 'prod',
-      //     commitSubject: env !== 'prod',
-      //   },
-      // }).config,
+      new BilldHtmlWebpackPlugin({
+        env: 'nuxt3-6',
+        log: {
+          pkgRepository: env !== 'prod',
+          commitSubject: env !== 'prod',
+        },
+      }).config,
       AutoImport({
         imports: [
           'vue',
