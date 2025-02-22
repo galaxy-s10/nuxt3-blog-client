@@ -79,15 +79,17 @@ export default defineNuxtConfig({
   buildDir,
   // https://www.naiveui.com/zh-CN/os-theme/docs/ssr
   build: {
-    transpile:
-      process.env.NODE_ENV === 'production'
-        ? [
-            'naive-ui',
-            'vueuc',
-            '@css-render/vue3-ssr',
-            '@juggle/resize-observer',
-          ]
-        : ['@juggle/resize-observer'],
+    // https://github.com/tusen-ai/naive-ui/issues/6564
+    transpile: ['vueuc'],
+    // transpile:
+    //   process.env.NODE_ENV === 'production'
+    //     ? [
+    //         'naive-ui',
+    //         'vueuc',
+    //         '@css-render/vue3-ssr',
+    //         '@juggle/resize-observer',
+    //       ]
+    //     : ['@juggle/resize-observer'],
   },
   devServer: {
     port,

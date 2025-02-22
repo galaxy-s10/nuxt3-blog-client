@@ -11,6 +11,15 @@
 import LayoutFooter from './footer/index.vue';
 import LayoutHeader from './header/index.vue';
 import LayoutTypelist from './typelist/index.vue';
+
+const props = defineProps({
+  error: {
+    type: Object,
+    default: () => {},
+  },
+});
+
+console.log(props.error);
 </script>
 
 <style scoped lang="scss">

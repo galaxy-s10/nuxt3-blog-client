@@ -4,10 +4,10 @@
 # Date: 2022-08-09 12:55:48
 # Description: https://github.com/galaxy-s10/sh/
 # Email: 2274751790@qq.com
-# FilePath: /galaxy-s10/nuxt3-blog-client/deploy/nuxt-pm2.sh
+# FilePath: /nuxt3-blog-client/deploy/nuxt-pm2.sh
 # Github: https://github.com/galaxy-s10
 # LastEditors: shuisheng
-# LastEditTime: 2024-03-14 14:16:13
+# LastEditTime: 2025-02-22 17:54:28
 ###
 
 # 生成头部文件快捷键: ctrl+cmd+i
@@ -77,7 +77,7 @@ echo 删除旧的pm2服务:
 pm2 del $JOBNAME-$ENV-$PORT
 
 echo 使用pm2维护:
-# pm2 start './node_modules/nuxt/bin/nuxt.js' --name nuxt-blog-client-null-3000 -i 1 -- start
+# pm2 start './.output/server/index.mjs' --name nuxt-blog-client-null-3000 -i 1 -- start
 export PORT=$PORT && pm2 start './.output/server/index.mjs' --name $JOBNAME-$ENV-$PORT -i 1
 
 # pm2-runtime start './node_modules/nuxt/bin/nuxt.js' --name nuxt-blog-client-null-3000 -i 2 -- start

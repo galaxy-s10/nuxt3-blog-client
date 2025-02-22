@@ -3,7 +3,6 @@
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import semver from 'semver';
 import trash from 'trash';
 
 const allFile = [];
@@ -74,15 +73,12 @@ async function clearOld() {
 }
 
 const newPkgStr = fs.readFileSync(
-  path.resolve(giteeDir, 'package.json'),
+  path.resolve(localDir, 'package.json'),
   'utf-8'
 );
-const oldPkgStr = fs.readFileSync(
-  path.resolve(giteeDir, 'package.json'),
-  'utf-8'
-);
-const oldPkg = JSON.parse(oldPkgStr);
-const newVersion = semver.inc(oldPkg.version, 'patch');
+const newPkg = JSON.parse(newPkgStr);
+
+execSync(`npm run release`, { cwd: localDir });
 
 if (process.cwd().includes('jenkins')) {
   console.log('当前目录错误');
@@ -99,10 +95,13 @@ if (process.cwd().includes('jenkins')) {
     execSync(`git commit -m 'feat: ${new Date().toLocaleString()}'`, {
       cwd: giteeDir,
     });
-    execSync(`git tag v${newVersion} -m 'chore(release): ${newVersion}'`, {
-      cwd: giteeDir,
-    });
+    execSync(
+      `git tag v${newPkg.version} -m 'chore(release): ${newPkg.version}'`,
+      {
+        cwd: giteeDir,
+      }
+    );
     execSync(`git push`, { cwd: giteeDir });
-    execSync(`git push origin v${newVersion}`, { cwd: giteeDir });
+    execSync(`git push origin v${newPkg.version}`, { cwd: giteeDir });
   });
 }

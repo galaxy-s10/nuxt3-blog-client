@@ -1,4 +1,4 @@
-import axios, { Axios, AxiosRequestConfig } from 'axios';
+import axios, { Axios, AxiosError, type AxiosRequestConfig } from 'axios';
 
 export interface IResponse<T = any>
   extends Promise<{
@@ -39,50 +39,53 @@ class MyAxios {
         // console.log('response.data', response.data);
         return response.data;
       },
-      (error) => {
-        console.log('响应拦截到错误', error);
+      (error: AxiosError) => {
+        console.log('响应拦截到错误', error.message);
+        if (error.config) {
+          console.log('接口路径', `${error.config.baseURL}${error.config.url}`);
+        }
         if (error.message.includes('timeout')) {
           console.error(error.message);
-          window.$message.error('请求超时，请重试');
+          window.$message?.error('请求超时，请重试');
         }
-        const statusCode = error.response.status as number;
+        const statusCode = error.response?.status as number;
         const errorResponse = error.response;
-        const errorResponseData = errorResponse.data;
+        const errorResponseData = errorResponse?.data as any;
         const whiteList = ['400', '401', '403', '404', '500'];
         if (error.response) {
           if (!whiteList.includes(`${statusCode}`)) {
-            window.$message.error(error.message);
+            window.$message?.error(error.message);
             return Promise.reject(error.message);
           }
           if (statusCode === 400) {
             console.error(errorResponseData.message);
-            window.$message.error(errorResponseData.message);
+            window.$message?.error(errorResponseData.message);
             return Promise.reject(errorResponseData);
           }
           if (statusCode === 401) {
             console.error(errorResponseData.message);
-            window.$message.error(errorResponseData.message);
+            window.$message?.error(errorResponseData.message);
             return Promise.reject(errorResponseData);
           }
           if (statusCode === 403) {
             console.error(errorResponseData.message);
-            window.$message.error(errorResponseData.message);
+            window.$message?.error(errorResponseData.message);
             return Promise.reject(errorResponseData);
           }
           if (statusCode === 404) {
             console.error(errorResponseData.message);
-            window.$message.error(errorResponseData.message);
+            window.$message?.error(errorResponseData.message);
             return Promise.reject(errorResponseData);
           }
           if (statusCode === 500) {
             console.error(errorResponseData.error);
-            window.$message.error(errorResponseData.error);
+            window.$message?.error(errorResponseData.error);
             return Promise.reject(errorResponseData);
           }
         } else {
           // 请求超时没有response
           console.error(error.message);
-          window.$message.error(error.message);
+          window.$message?.error(error.message);
           return Promise.reject(error.message);
         }
       }
@@ -108,8 +111,8 @@ class MyAxios {
 export default new MyAxios({
   baseURL:
     process.env.NODE_ENV === 'development'
-      ? 'https://api.hsslive.cn/prodapi/' // '/api'
-      : 'https://api.hsslive.cn/prodapi/',
+      ? 'https://api.hsslive.cn/prodapi' // '/api'
+      : 'https://api.hsslive.cn/prodapi',
   // baseURL: '/prodapi',
   timeout: 1000 * 5,
 });
