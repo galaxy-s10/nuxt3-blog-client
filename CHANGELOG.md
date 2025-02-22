@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/galaxy-s10/nuxt3-blog-client/compare/v2.1.0...v2.1.1) (2025-02-22)
+
+
+### Bug Fixes
+
+* cache ([0ccdfad](https://github.com/galaxy-s10/nuxt3-blog-client/commit/0ccdfad78780125e844eaac7327f7d465981c4f5))
+
 ## 2.1.0 (2025-02-21)
 
 
